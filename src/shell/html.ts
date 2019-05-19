@@ -1,10 +1,10 @@
-const html = ({ body }: { body: string }) => `
+const html = ({ body }: { body: string }): string => `
   <!DOCTYPE html>
   <html>
     <head></head>
     <body>${body}</body>
     <script src="js/client.js" defer></script>
   </html>
-`;
+`
 
-export default html;
+export default html
