@@ -2,8 +2,9 @@
     "name": "ts-node-react-ssr",
     "version": "0.2.0",
     "main": "dist/index.js",
-    "author": "",
-    "license": "ISC",
+    "author": "Andrei Bunulu <bunulu@gmail.com>",
+    "license": "MIT",
+    "description": "Typescript, node with React server rendering sandox",
     "scripts": {
         "build": "tsc",
         "test": "jest",
@@ -57,6 +58,5 @@
             "pretty-quick",
             "git add"
         ]
-    },
-    "description": "Install dependencies using either **yarn** or **npm** We'll assume you're using `npm`, but if you're using `yarn` instead, adjust the commands appropriately (namely, replace `npm run` with `yarn` and `npm i` with `yarn`)."
+    }
 }
