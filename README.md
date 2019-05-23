@@ -1,6 +1,6 @@
 # About
-This boilerplate has predifined Typescript with Node and React for server side rendering
-There is another branch without React but with Typescript, Node and Websockets predifined [websockets version](https://github.com/bafxyz/ts-node-react-ssr/tree/ws)
+This boilerplate has predifined Typescript with Node and React for server side rendering.
+There is another branch without React but with Typescript, Node and Websockets predifined. [Websockets version](https://github.com/bafxyz/ts-node-react-ssr/tree/ws)
 
 # Prerequisites
 
