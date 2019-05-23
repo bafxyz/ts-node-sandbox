@@ -1,16 +1,51 @@
-import express from 'express'
-import React from 'react'
-import { renderToString } from 'react-dom/server'
-import App from './shell/App'
-import html from './shell/html'
+import http from 'http'
 
-const port = 3000
-const server = express()
+// Create an HTTP server
+const srv = http.createServer(
+    (_req, { writeHead, end }): void => {
+        writeHead(200, { 'Content-Type': 'text/plain' })
+        end('okay')
+    }
+)
 
-server.use(express.static('dist'))
-server.get('/', function(req, res): void {
-    const body = renderToString(React.createElement(App))
+srv.on(
+    'upgrade',
+    (_req, socket, _head): void => {
+        socket.write(
+            'HTTP/1.1 101 Web Socket Protocol Handshake\r\n' +
+                'Upgrade: WebSocket\r\n' +
+                'Connection: Upgrade\r\n' +
+                '\r\n'
+        )
+        socket.pipe(socket) // echo back
+    }
+)
 
-    res.send(html({ body }))
-})
-server.listen(port, (): void => console.log('Server running on port 3000!'))
+// Now that server is running
+srv.listen(
+    1337,
+    '127.0.0.1',
+    (): void => {
+        // make a request
+        const options = {
+            port: 1337,
+            host: '127.0.0.1',
+            headers: {
+                Connection: 'Upgrade',
+                Upgrade: 'websocket'
+            }
+        }
+
+        const req = http.request(options)
+        req.end()
+
+        req.on(
+            'upgrade',
+            (_res, socket, _upgradeHead): void => {
+                console.log('got upgraded!')
+                socket.end()
+                process.exit(0)
+            }
+        )
+    }
+)
