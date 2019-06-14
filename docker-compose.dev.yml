@@ -1,16 +1,16 @@
-version: '3'
+version: "3"
 services:
   # Nginx webserver
   nginx:
     image: nginx
     volumes:
-     - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - '80:80'
+      - "80:80"
     depends_on:
-     - api
+      - api
     networks:
-     - app-network
+      - app-network
   # Nodejs API
   api:
     image: node
@@ -19,34 +19,34 @@ services:
     volumes:
       - ./api:/usr/src/api
     ports:
-      - '8080:8080'
+      - "8080:8080"
     depends_on:
       - mongodb
     command: bash -c "yarn start"
     networks:
-     - app-network
+      - app-network
   # Mongodb
   mongodb:
     image: mongo
     env_file: config/mongodb/.env.development
     ports:
-      - '27017:27017'
+      - "27017:27017"
     networks:
-     - app-network
+      - app-network
   # Client
   app:
     image: node
     working_dir: /usr/src/app
     env_file: config/app/.env.development
-    volumes: 
+    volumes:
       # For webpack dev server to use our local files
       - ./app:/usr/src/app
     ports:
       # For docker to now where to redirect HMR queries
-      - '3000:3000'
+      - "3000:3000"
     command: bash -c "yarn start"
     networks:
-     - app-network
+      - app-network
 
 networks:
   app-network:
