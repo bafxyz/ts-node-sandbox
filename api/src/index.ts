@@ -23,12 +23,12 @@ srv.on(
 
 // Now that server is running
 srv.listen(
-    1337,
+    8080,
     '127.0.0.1',
     (): void => {
         // make a request
         const options = {
-            port: 1337,
+            port: 8080,
             host: '127.0.0.1',
             headers: {
                 Connection: 'Upgrade',

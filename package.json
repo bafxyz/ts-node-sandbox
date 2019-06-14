@@ -1,49 +1,14 @@
 {
-    "name": "ts-node-websockets",
-    "version": "0.2.0",
-    "main": "dist/index.js",
+    "name": "app",
     "author": "Andrei Bunulu <bunulu@gmail.com>",
-    "license": "MIT",
-    "description": "Typescript, Node with Websockets",
     "scripts": {
-        "build": "tsc",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "ts-node": "ts-node",
-        "start": "nodemon",
-        "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --quiet --fix",
+        "start": "docker-compose -f docker-compose.dev.yml up",
+        "stop": "docker-compose -f docker-compose.dev.yml down",
+        "uninstall": "docker-compose -f docker-compose.dev.yml down --rmi all",
         "release": "standard-version"
     },
-    "dependencies": {},
-    "devDependencies": {
-        "@types/jest": "^24.0.13",
-        "@types/node": "^12.0.2",
-        "@typescript-eslint/eslint-plugin": "^1.9.0",
-        "@typescript-eslint/parser": "^1.9.0",
-        "eslint": "^5.16.0",
-        "eslint-config-prettier": "^4.3.0",
-        "eslint-plugin-prettier": "^3.1.0",
-        "husky": "^2.3.0",
-        "jest": "^24.8.0",
-        "lint-staged": "^8.1.7",
-        "nodemon": "^1.19.0",
-        "prettier": "^1.17.1",
-        "pretty-quick": "^1.11.0",
-        "standard-version": "^6.0.1",
-        "ts-jest": "^24.0.2",
-        "ts-node": "^8.1.0",
-        "typescript": "^3.4.5"
+    "dependencies": {
+        "standard-version": "^6.0.1"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.{ts,tsx}": [
-            "eslint --fix",
-            "pretty-quick",
-            "git add"
-        ]
-    }
+    "version": "0.0.1"
 }
