@@ -1,0 +1,22 @@
+overwrite: true
+schema:
+    - 'https://graphql-pokemon.now.sh'
+    - './src/entities/Counter/schema.gql'
+    - './src/entities/Pokemon/schema.gql'
+    - './src/entities/Todo/schema.gql'
+    - './src/entities/User/schema.gql'
+documents: 'src/!(generated)/*.{tsx,ts}'
+generates:
+    src/generated/graphql.tsx:
+        config:
+            noNamespaces: true
+            contextType: ../apollo/context#MyContext
+            withHooks: true
+            noHOC: true
+            noComponents: true
+        plugins:
+            - 'typescript-common'
+            - 'typescript-client'
+            - 'typescript-react-apollo'
+            - 'typescript-server'
+            - 'typescript-resolvers'

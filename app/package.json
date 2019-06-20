@@ -6,46 +6,76 @@
     "license": "MIT",
     "description": "Typescript, React",
     "scripts": {
-        "start": "webpack-dev-server --env.environment=development --mode=development --port 3000 --host=0.0.0.0",
-        "build": "rimraf dist && webpack --env.environment=production --mode production"
+        "start": "npm-run-all --parallel generate:gql dev",
+        "dev": "webpack-dev-server --env.environment=development --mode=development --port 3000 --host=0.0.0.0",
+        "build": "rimraf dist && webpack --env.environment=production --mode production",
+        "generate:gql": "graphql-codegen --watch --config codegen.yml"
     },
     "dependencies": {
-        "@types/react": "^16.8.20",
+        "@types/graphql": "^14.2.1",
+        "@types/lodash-es": "^4.17.3",
+        "@types/react": "^16.8.21",
         "@types/react-dom": "^16.8.4",
+        "apollo-cache-inmemory": "^1.6.2",
+        "apollo-client": "^2.6.3",
+        "apollo-link": "^1.2.12",
+        "apollo-link-http": "^1.5.15",
+        "apollo-link-rest": "^0.7.3",
+        "graphql": "^14.3.1",
+        "graphql-anywhere": "^4.2.4",
+        "graphql-code-generator": "^0.18.2",
+        "lodash-es": "^4.17.11",
+        "npm-run-all": "^4.1.5",
+        "qs": "^6.7.0",
         "react": "^16.8.6",
+        "react-apollo-hooks": "^0.4.5",
         "react-dom": "^16.8.6"
     },
     "devDependencies": {
-        "@types/jest": "^24.0.14",
+        "@commitlint/cli": "^8.0.0",
+        "@commitlint/config-conventional": "^8.0.0",
+        "@graphql-codegen/cli": "^1.3.0",
+        "@types/jest": "^24.0.15",
         "@typescript-eslint/eslint-plugin": "^1.10.2",
         "@typescript-eslint/parser": "^1.10.2",
         "awesome-typescript-loader": "^5.2.1",
         "copy-webpack-plugin": "^5.0.3",
         "eslint": "^5.16.0",
-        "eslint-config-prettier": "^4.3.0",
+        "eslint-config-prettier": "^5.0.0",
         "eslint-loader": "^2.1.2",
         "eslint-plugin-jsx-a11y": "^6.2.1",
         "eslint-plugin-prettier": "^3.1.0",
         "eslint-plugin-react": "^7.13.0",
+        "graphql-codegen-typescript-client": "^0.18.2",
+        "graphql-codegen-typescript-common": "^0.18.2",
+        "graphql-codegen-typescript-react-apollo": "^0.18.2",
+        "graphql-codegen-typescript-resolvers": "^0.18.2",
+        "graphql-codegen-typescript-server": "^0.18.2",
         "html-webpack-plugin": "^3.2.0",
         "husky": "^2.4.1",
         "jest": "^24.8.0",
         "lint-staged": "^8.2.1",
         "prettier": "^1.18.2",
         "pretty-quick": "^1.11.1",
-        "react-hot-loader": "^4.11.0",
+        "react-hot-loader": "^4.11.1",
         "source-map-loader": "^0.2.4",
         "typescript": "^3.5.2",
-        "webpack": "^4.34.0",
+        "webpack": "^4.35.0",
         "webpack-bundle-analyzer": "^3.3.2",
         "webpack-cli": "^3.3.4",
-        "webpack-dev-server": "^3.7.1",
+        "webpack-dev-server": "^3.7.2",
         "webpack-merge": "^4.2.1"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "lint-staged",
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
     },
     "lint-staged": {
         "*.{ts,tsx}": [

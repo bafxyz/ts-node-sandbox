@@ -1,0 +1,17 @@
+type Name {
+    title: String
+    first: String
+    last: String
+}
+
+type Person {
+    gender: String
+    name: Name
+}
+
+type Pokemon {
+    isMaxHPOdd: Boolean!
+    isMaxHPDivisibleByCount: Boolean!
+    randomPerson: Person
+    isFavorite: Boolean
+}

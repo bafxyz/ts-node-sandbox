@@ -1,23 +1,21 @@
 import React from 'react'
-import { CountProvider, useCountState, useCountDispatch } from './count-context'
-
-function CountDisplay() {
-    const { count } = useCountState()
-    return <div>{`The current count is ${count}`}</div>
-}
-
-function Counter() {
-    const dispatch = useCountDispatch()
-
-    return <button onClick={() => dispatch({ type: 'increment' })}>Increment count</button>
-}
+import { DirectQuery } from './components/DirectQuery'
+import { DirectWrite } from './components/DirectWrite'
+import { Mutations } from './components/Mutations'
+import { Queries } from './components/Queries'
+import { Todos } from './components/Todos'
+import { Variables } from './components/Variables'
 
 function App() {
     return (
-        <CountProvider>
-            <CountDisplay />
-            <Counter />
-        </CountProvider>
+        <>
+            <DirectWrite />
+            <Mutations />
+            <DirectQuery />
+            <Queries />
+            <Variables />
+            <Todos />
+        </>
     )
 }
 

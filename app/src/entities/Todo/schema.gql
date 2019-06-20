@@ -1,0 +1,13 @@
+type Todo {
+    id: ID!
+    text: String
+    complete: Boolean
+}
+
+type Query {
+    todos: Todo
+}
+
+type Mutation {
+    toggleTodoComplete(id: ID!): Boolean
+}
